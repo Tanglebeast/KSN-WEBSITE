@@ -2663,7 +2663,7 @@ option {
   justify-content: center;
   align-items: center;
   z-index: 9999999;
-  background: white;
+  background: black;
 }
 
 .loader {
@@ -4987,10 +4987,10 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
 }
 
 .filter-btn-group {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   margin-bottom: 70px;
-  background-color: rgba(232, 0, 0, 0.1);
+  background-color: #e5c84950;
   border-radius: 999px;
 }
 @media only screen and (max-width: 1199px) {
@@ -5815,7 +5815,6 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
   width: 20%;
 }
 .training-section--style .training-item {
-  box-shadow: 0px 15px 30px rgba(232, 0, 0, 0.17);
   border-radius: 10px;
   padding: 0;
   position: relative;
@@ -7176,27 +7175,27 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
   padding: 30px 20px;
 }
 .plan-item:hover {
-  transform: translateY(-7px);
+  /* transform: translateY(-7px); */
 }
 .plan-item:hover, .plan-item.active {
-  border: 1px solid transparent;
-  box-shadow: 0 15px 25px rgba(232, 0, 0, 0.2);
+  /* border: 1px solid transparent;
+  box-shadow: 0 15px 25px rgba(232, 0, 0, 0.2); */
 }
 .plan-item:hover .plan-header p, .plan-item.active .plan-header p {
-  color: white;
+  /* color: white; */
 }
 .plan-item:hover .plan-price-area .price-title, .plan-item.active .plan-price-area .price-title {
-  color: white;
+  /* color: white; */
 }
 .plan-item:hover .plan-list li, .plan-item.active .plan-list li {
-  color: white;
+  /* color: white; */
 }
 .plan-item:hover .plan-footer, .plan-item.active .plan-footer {
-  background-color: #e5c949;
+  /* background-color: #e5c949; */
 }
 .plan-item:hover .plan-overlay, .plan-item.active .plan-overlay {
-  opacity: 1;
-  visibility: visible;
+  /* opacity: 1;
+  visibility: visible; */
 }
 
 .plan-header {
@@ -7226,7 +7225,6 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
   }
 }
 .plan-header .plan-badge.red {
-  background-color: rgba(232, 0, 0, 0.14);
   color: #e5c949;
 }
 .plan-header .plan-badge.yellow {
@@ -7694,7 +7692,7 @@ div[class*="col"]:nth-of-type(3n + 3) .statistics-item::after {
     [ ### overview block ]
 */
 .overview-item {
-  background-color: white;
+  background-color: black;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   text-align: center;
@@ -7743,7 +7741,8 @@ div[class*="col"]:nth-of-type(3n + 3) .statistics-item::after {
   font-family: "Kanit", sans-serif;
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(232, 0, 0, 0.2);
+  -webkit-text-stroke: 1px #e5c949;
+  opacity: .2;
   font-style: italic;
   transition: all 0.5s;
 }
@@ -7763,7 +7762,7 @@ div[class*="col"]:nth-of-type(3n + 3) .statistics-item::after {
   margin-bottom: -30px;
 }
 .faq-wrapper .faq-item {
-  background-color: white;
+  background-color: black;
   border: 3px solid transparent;
   padding: 25px;
   border-radius: 10px;
@@ -7839,7 +7838,7 @@ div[class*="col"]:nth-of-type(3n + 3) .statistics-item::after {
   display: block;
   width: 40px;
   height: 40px;
-  background-color: rgba(232, 0, 0, 0.1);
+  background-color: rgba(255, 223, 0, 0.1);
   border-radius: 50%;
   position: relative;
 }
@@ -9373,4 +9372,22 @@ div[class*="col"]:nth-of-type(4n + 4) .choose-item::after {
 
 .pt30 {
   padding-top: 30px;
+}
+
+.bg2 {
+  background-color: #191919;
+}
+
+.custom-padding-1 {
+  padding: 50px;
+}
+
+.trainingsplansearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center
 }
