@@ -88,7 +88,7 @@
                                         <a href="/about">ÜBER UNS</a>
                                         <ul class="sub-menu">
                                             <li><a href="/about">ÜBER DEN KSN</a></li>
-                                            <li><a href="/trainer">ÜBER UNSERE TRAINER</a></li>
+                                            <li><a href="/trainer">UNSERE TRAINER</a></li>
                                         </ul>
                                     </li>
                                     <li class="menu_has_children">
@@ -110,7 +110,7 @@
                                             <li><a href="plan.html">PRICING PLAN</a></li>
                                             <li><a href="/faq">FAQ</a></li>
                                             <li><a href="/gallery">GALLERY</a></li>
-                                            <li><a href="/apply">APPLY</a></li>
+                                            <li><a href=" /probetraining">APPLY</a></li>
                                             <li><a href="register.html">SIGN UP</a></li>
                                             <li><a href="login.html">SIGN IN</a></li>
                                             <li><a href="/404">404 PAGE</a></li>
@@ -135,9 +135,16 @@
                                     <li class="menu_has_children">
                                         <a href="/faq">FAQ</a>
                                     </li>
-                                    <li><a href="/contact">KONTAKT</a></li>
+                                     
                                 </div>
                             </ul>
+                            <div class="header-right">
+                                <div class="header-action-area">
+                                    <div class="header-action">
+                                        <a href=" /probetraining" class="btn--base">PROBETRAINING <i class="fas fa-arrow-right ml-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -148,6 +155,14 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     End Header
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!-- Cookie-Banner -->
+<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; background: #333; color: #fff; width: 100%; padding: 10px; text-align: center; z-index: 999999;">
+    <p>Wir verwenden Cookies, um Ihnen das beste Nutzererlebnis zu bieten. Mehr dazu in unserer <a href="/datenschutz" style="color: #ffd700;">Datenschutzerklärung</a>.</p>
+    <button onclick="acceptCookies()" style="margin: 0 5px;">Akzeptieren</button>
+    <button onclick="declineCookies()" style="margin: 0 5px;">Ablehnen</button>
+</div>
 
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -691,8 +706,8 @@
                         </li>
                         <li>
                             <img src="assets/images/icon/phone.png" alt="Telefon Icon" class="icon">
-                            <a href="tel:+4900000000000">
-                                <span>+49 000 000 000 00</span>
+                            <a href="tel:+491737470135">
+                                <span>+49 173 7470135</span>
                             </a>
                         </li>
                         <li>
@@ -735,15 +750,15 @@
             <div class="col-xl-12 text-center">
                 <div class="copyright-area">
                     <div class="mb20">
-                        <a class="mr15" href="impressum.html">Impressum</a>
+                        <a class="mr15" href="/impressum">Impressum</a>
                         <a class="mr15 ml15" href="datenschutz.html">Datenschutz</a>
-                        <a class="ml15" href="cookies.html">Cookie-Richtlinie (EU)</a>
+                        <a class="ml15" href="javascript:void(0);" onclick="showCookieBanner()">Cookies</a>
                     </div>
                     <p>&copy; 2024 KSN</p>
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
 </footer>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     End Footer

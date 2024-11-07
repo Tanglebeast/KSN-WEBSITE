@@ -1619,7 +1619,7 @@ input::-moz-focus-inner {
   position: relative;
   background: #e5c949;
   border: 2px solid #e5c949;
-  color: white;
+  color: black;
   padding: 12px 30px;
   border-radius: 999px;
   font-size: 16px;
@@ -1642,6 +1642,7 @@ input::-moz-focus-inner {
 .btn--base:focus, .btn--base:hover {
   color: #e5c949;
   background-color: transparent;
+  border: 2px solid white;
 }
 @media only screen and (max-width: 991px) {
   .btn--base {
@@ -2781,26 +2782,26 @@ section {
 
 .header-bottom-area {
   position: relative;
-  padding: 15px 250px 0 200px;
+  padding: 0;
 }
 @media only screen and (max-width: 1830px) {
   .header-bottom-area {
-    padding: 15px 180px 0 150px;
+    padding: 0;
   }
 }
 @media only screen and (max-width: 1675px) {
   .header-bottom-area {
-    padding: 15px 100px 0 90px;
+    padding: 0;
   }
 }
 @media only screen and (max-width: 1435px) {
   .header-bottom-area {
-    padding: 15px 60px 0 30px;
+    padding: 0;
   }
 }
 @media only screen and (max-width: 1340px) {
   .header-bottom-area {
-    padding: 15px 30px 0 30px;
+    padding: 0;
   }
 }
 @media only screen and (max-width: 991px) {
@@ -3169,10 +3170,10 @@ section {
 }
 .header-action a {
   padding: 12px 20px;
-  background-color: white;
+  background-color: #e5c949;
   color: black;
   font-family: "Kanit", sans-serif;
-  border: 2px solid white;
+  border: 2px solid transparent;
   font-weight: 600;
   font-size: 16px;
   margin: 5px;
@@ -4014,7 +4015,7 @@ section {
   font-style: italic;
   position: relative;
   z-index: 2;
-  color: white;
+  color: black;
 }
 @media only screen and (max-width: 991px) {
   .breadcrumb-item a {
@@ -4024,7 +4025,7 @@ section {
 
 .breadcrumb-item.active {
   font-weight: 500;
-  color: white;
+  color: black;
   font-style: italic;
   font-size: 16px;
   position: relative;
@@ -4041,7 +4042,7 @@ section {
   font-family: "Roboto", sans-serif;
   font-style: italic;
   font-weight: 500;
-  color: white;
+  color: black;
   font-size: 16px;
   left: 0;
   top: 1px;
@@ -8286,9 +8287,10 @@ div[class*="col"]:nth-of-type(4n + 4) .choose-item::after {
   font-weight: 600;
 }
 .account-widget-section--style .account-widget-form .form--control {
-  background-color: white;
-  border: 1px solid #e6e6e6;
+  background-color: #191919;
+  border: 1px solid transparent;
   font-weight: 400;
+  color: white;
 }
 .account-widget-section--style .account-widget-form .form--control:focus {
   border: 1px solid rgba(232, 0, 0, 0.5);
@@ -8298,7 +8300,7 @@ div[class*="col"]:nth-of-type(4n + 4) .choose-item::after {
   background-color: transparent;
 }
 .account-widget-section--style-two .account-widget-form-area {
-  background-color: #F8F9FF;
+  background-color: black;
   padding: 60px;
   border-radius: 6px;
   position: relative;
@@ -8571,13 +8573,34 @@ div[class*="col"]:nth-of-type(4n + 4) .choose-item::after {
 }
 
 .four-not-four-content .title {
-  color: #e5c949;
+  color: black;
   font-size: 250px;
   line-height: 250px;
   font-weight: 700;
   font-style: italic;
   margin-bottom: 0;
 }
+
+.four-not-four-content {
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3),
+               6px 6px 10px rgba(0, 0, 0, 0.25),
+               9px 9px 15px rgba(0, 0, 0, 0.2),
+               12px 12px 20px rgba(0, 0, 0, 0.15),
+               15px 15px 25px rgba(0, 0, 0, 0.1),
+               18px 18px 30px rgba(0, 0, 0, 0.05);
+}
+
+.four-not-four-content .btn--base {
+box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3),
+  6px 6px 10px rgba(0, 0, 0, 0.25),
+  9px 9px 15px rgba(0, 0, 0, 0.2),
+  12px 12px 20px rgba(0, 0, 0, 0.15),
+  15px 15px 25px rgba(0, 0, 0, 0.1),
+  18px 18px 30px rgba(0, 0, 0, 0.05);
+}
+
+
+
 @media only screen and (max-width: 991px) {
   .four-not-four-content .title {
     font-size: 130px;
@@ -9390,4 +9413,54 @@ div[class*="col"]:nth-of-type(4n + 4) .choose-item::after {
 
 .text-center {
   text-align: center
+}
+
+
+
+
+/* /////////
+IMPRESSUM
+///////// */
+
+.imprint-section, .privacy-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.impressum-container, .privacy-container {
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 70%;
+}
+
+.section-header {
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2em;
+  color: white !important;
+  margin-bottom: 20px;
+}
+
+.info-section, .contact-info, .address-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid white;
+  opacity: 0.75;
+}
+
+.impressum-container a, .privacy-container a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.impressum-container a:hover, .privacy-container a:hover {
+  text-decoration: underline;
 }
