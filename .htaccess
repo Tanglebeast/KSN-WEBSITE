@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-RewriteEngine on 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [NC,L]
-=======
 # Aktivieren des Rewrite-Moduls
 RewriteEngine On
 
@@ -16,4 +10,3 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^([^.]+)$ $1.html [L]
 
->>>>>>> a12bcfe (Initialer Commit nach Umzug)
