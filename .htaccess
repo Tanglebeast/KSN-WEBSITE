@@ -1,4 +1,19 @@
+<<<<<<< HEAD
 RewriteEngine on 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
+=======
+# Aktivieren des Rewrite-Moduls
+RewriteEngine On
+
+# Weiterleitung von URLs mit .html zu URLs ohne .html (z.B. /seite.html → /seite)
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Interne Weiterleitung von URLs ohne .html zu den entsprechenden .html-Dateien (z.B. /seite → /seite.html)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^.]+)$ $1.html [L]
+
+>>>>>>> a12bcfe (Initialer Commit nach Umzug)
