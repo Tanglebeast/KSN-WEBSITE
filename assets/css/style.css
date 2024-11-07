@@ -9470,37 +9470,8 @@ IMPRESSUM
 /* /////////
 partner karusell
 ///////// */
-/* Brand Partners Slider */
-.bp-container {
-  /* Sie können hier Container-spezifische Stile hinzufügen */
-}
+/* Slider */
 
-.bp-font-weight-bold {
-  font-weight: bold;
-}
-
-.bp-h3 {
-  font-size: 1.75rem; /* Entspricht h3 */
-}
-
-.bp-mb-5 {
-  margin-bottom: 3rem;
-}
-
-.bp-customer-logos.bp-slider {
-  /* Stile für den Slider-Bereich */
-}
-
-.bp-slide {
-  margin: 0px 20px;
-}
-
-.bp-slide img {
-  width: 100%;
-  display: block;
-}
-
-/* Slick Slider Standardstile */
 .slick-slide {
   margin: 0px 20px;
 }
@@ -9513,7 +9484,13 @@ partner karusell
   position: relative;
   display: block;
   box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
 }
@@ -9537,6 +9514,10 @@ partner karusell
 
 .slick-slider .slick-track,
 .slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
@@ -9600,28 +9581,4 @@ partner karusell
 
 .slick-arrow.slick-hidden {
   display: none;
-}
-
-/* Zusätzliche spezifische Stile für Brand Partners */
-.bp-my-5 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-.bp-py-5 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-.bp-small {
-  font-size: 0.875rem;
-}
-
-.bp-container a {
-  color: #007bff; /* Beispielhafte Linkfarbe */
-  text-decoration: none;
-}
-
-.bp-container a:hover {
-  text-decoration: underline;
 }
