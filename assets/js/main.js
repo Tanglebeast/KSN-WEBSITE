@@ -1,8 +1,59 @@
 (function ($) {
   "user strict";
 
-  // preloader
-  $(window).on('load', function () {
+
+  // Cookie-Management-Funktionen
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    }
+    return null;
+}
+
+function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+// Funktionen für Akzeptieren und Ablehnen, diese Funktionen sind nun global verfügbar
+window.acceptCookies = function() {
+    setCookie("userConsent", "accepted", 365);
+    $("#cookie-banner").hide();
+}
+
+window.declineCookies = function() {
+    setCookie("userConsent", "declined", 365);
+    $("#cookie-banner").hide();
+}
+
+// Funktion, um das Cookie-Banner anzuzeigen
+window.showCookieBanner = function() {
+  $("#cookie-banner").show();
+}
+
+// Cookie-Banner anzeigen, wenn keine Einwilligung vorliegt
+$(window).on('load', function () {
+    const userConsent = getCookie("userConsent");
+    if (!userConsent) {
+        $("#cookie-banner").show();
+    }
+
+
+
+
     $(".preloader").delay(1000).animate({
       "opacity": "0"
     }, 1000, function () {
@@ -13,9 +64,8 @@
   $("select").niceSelect(),
 
 // aos
-AOS.init({
-  once: true,
-})
+$("select").niceSelect();
+AOS.init({ once: true });
 
 
 $('.video-icon').lightcase();
