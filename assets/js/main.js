@@ -66,7 +66,7 @@ $(window).on('load', function () {
   }
 
 
-  
+
   $(".preloader").delay(1000).animate({
       "opacity": "0"
   }, 1000, function () {
