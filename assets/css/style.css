@@ -9509,3 +9509,7 @@ IMPRESSUM
 .flex-column-1 {
   flex-direction: row;
 }
+
+.justify-content-center {
+  justify-content: center;
+}
