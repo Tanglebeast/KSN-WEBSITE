@@ -2746,7 +2746,8 @@ section {
 
 .header {
   background-color: transparent;
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
   z-index: 99;
   -webkit-transition: all ease 1s;
   transition: all ease 1s;
@@ -2828,6 +2829,10 @@ section {
   .header-bottom-area .navbar-collapse {
     background-color: black !important;
     padding: 0 !important;
+  }
+  .header {
+    width: 100%;
+    margin-left: 0;
   }
   .header-bottom-area .navbar-collapse .main-menu {
     padding: 15px 0;
