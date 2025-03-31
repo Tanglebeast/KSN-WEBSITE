@@ -8659,6 +8659,9 @@ box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3),
   .blog-section .blog-element-two {
     display: none;
   }
+  .flex-column-1 {
+    flex-direction: column !important;
+  }
 }
 
 .blog-item:hover .blog-thumb img {
@@ -9503,6 +9506,6 @@ IMPRESSUM
   background-color: #9d8519;
 }
 
-.flex-column {
-  flex-direction: column;
+.flex-column-1 {
+  flex-direction: row;
 }
