@@ -9502,3 +9502,7 @@ IMPRESSUM
 .kurs-download-area button:hover {
   background-color: #9d8519;
 }
+
+.flex-column {
+  flex-direction: column;
+}
