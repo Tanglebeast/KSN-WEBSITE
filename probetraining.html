@@ -51,6 +51,9 @@
         <link rel="stylesheet" href="assets/css/style.css">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+        <!-- EmailJS SDK -->
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     </head>    
 <body>
 
@@ -238,40 +241,52 @@
                         <div class="col-xl-10 col-lg-12 text-center">
                             <div class="section-header">
                                 <h2 class="section-title">Buche dein <span>kostenloses</span> Probetraining <span>Jetzt!</span></h2>
-                                <p>Bevor du irgendwelche wichtigen eintscheidungen triffst kannst du natürlich unverbindlich, unkompliziert und kostenlos dein bevorzugtes Probetraining buchen.</p>
+                                <p>Bevor du irgendwelche wichtigen Entscheidungen triffst kannst du natürlich unverbindlich, unkompliziert und kostenlos dein bevorzugtes Probetraining buchen.</p>
                             </div>
                         </div>
                     </div>
-                    <form class="account-widget-form">
+                    <form class="account-widget-form" id="probetrainingForm" onsubmit="return sendForm(event)">
                         <div class="row justify-content-center mb-20-none">
                             <div class="col-xl-6 col-lg-6 form-group">
                                 <label>Name</label>
-                                <input type="text" class="form--control" placeholder="Max Mustermann">
+                                <input type="text" class="form--control" id="name" name="name" placeholder="Max Mustermann" required>
                             </div>
                             <div class="col-xl-6 col-lg-6 form-group">
                                 <label>Email</label>
-                                <input type="email" class="form--control" placeholder="beispiel@email.com">
+                                <input type="email" class="form--control" id="email" name="email" placeholder="beispiel@email.com" required>
                             </div>
                             <div class="col-xl-6 col-lg-6 form-group">
                                 <label>Handynummer</label>
-                                <input type="text" class="form--control" placeholder="+49 00 000 00 000">
+                                <input type="text" class="form--control" id="phone" name="phone" placeholder="+49 00 000 00 000" required>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 form-group">
+                                <label>Kategorie</label>
+                                <div class="account-widget-select">
+                                    <select class="form--control" id="categorySelect" name="category">
+                                        <option value="adults">Erwachsene (15+ Jahre)</option>
+                                        <option value="teens">Teens (10-14 Jahre)</option>
+                                        <option value="kids">Kinder (6-9 Jahre)</option>
+                                        <option value="bambinis">Bambinis (3-5 Jahre)</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 form-group">
                                 <label>Wähle deine Uhrzeit aus</label>
                                 <div class="account-widget-select">
-                                    <select class="form--control">
-                                        <option value="1">10:00</option>
-                                        <option value="2">12:00</option>
-                                        <option value="3">14:00</option>
+                                    <select class="form--control" id="timeSelect" name="time">
+                                        <option value="1">Montag 18:00</option>
+                                        <option value="2">Dienstag 18:00</option>
+                                        <option value="3">Freitag 18:30</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-xl-12 form-group">
                                 <label>Nachricht (optional)</label>
-                                <textarea class="form--control" placeholder="Start typing here"></textarea>
+                                <textarea class="form--control" id="message" name="message" placeholder="Start typing here"></textarea>
                             </div>
                             <div class="col-xl-12 form-group text-center">
                                 <button type="submit" class="btn--base mt-20">Probetraining buchen <i class="fas fa-arrow-right ml-2"></i></button>
+                                <div id="submitMessage" class="mt-2" style="display: none; color: #28a745;"></div> <!-- Neue Meldungszeile -->
                             </div>
                         </div>
                     </form>
@@ -284,83 +299,6 @@
     End Account widget
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Start Statistics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<!-- <section class="statistics-section statistics-section-two ptb-120">
-    <div class="statistics-element-one my-paroller" data-paroller-factor="0.2" data-paroller-type="foreground" data-paroller-direction="vertical">
-        <img src="assets/images/element/element-1.png" alt="element">
-    </div>
-    <div class="statistics-element-two my-paroller" data-paroller-factor="0.2" data-paroller-type="foreground" data-paroller-direction="vertical">
-        <img src="assets/images/element/element-2.png" alt="element">
-    </div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 text-center">
-                <div class="section-header">
-                    <h2 class="section-title">We are providing the <span>Boxing Training.</span></h2>
-                    <p>Learn to box for real with Fit Mindful Body Club trainer and 3x Golden Glove winner, Ian Mauleon! Proven to relieve stress, you'll sweat while learning real life boxing techniques and challenging your </p>
-                </div>
-            </div>
-        </div>
-        <div class="statistics-area">
-            <div class="row justify-content-center mb-30-none">
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-30">
-                    <div class="statistics-item">
-                        <div class="statistics-icon-area">
-                            <div class="statistics-icon">
-                                <img src="assets/images/icon/icon-44.png" alt="icon">
-                            </div>
-                        </div>
-                        <div class="statistics-content">
-                            <div class="odo-area">
-                                <h3 class="odo-title odometer" data-odometer-final="1025">0</h3>
-                                <h3 class="title">+</h3>
-                            </div>
-                            <p>Complete Training</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-30">
-                    <div class="statistics-item">
-                        <div class="statistics-icon-area">
-                            <div class="statistics-icon">
-                                <img src="assets/images/icon/icon-45.png" alt="icon">
-                            </div>
-                        </div>
-                        <div class="statistics-content">
-                            <div class="odo-area">
-                                <h3 class="odo-title odometer" data-odometer-final="478">0</h3>
-                                <h3 class="title">+</h3>
-                            </div>
-                            <p>License Registration</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-30">
-                    <div class="statistics-item">
-                        <div class="statistics-icon-area">
-                            <div class="statistics-icon">
-                                <img src="assets/images/icon/icon-46.png" alt="icon">
-                            </div>
-                        </div>
-                        <div class="statistics-content">
-                            <div class="odo-area">
-                                <h3 class="odo-title odometer" data-odometer-final="2500">0</h3>
-                                <h3 class="title">+</h3>
-                            </div>
-                            <p>Students Admission</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    End Statistics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -494,6 +432,8 @@
 <script src="assets/js/isotope.pkgd.min.js"></script>
 <!-- preloader js -->
 <script src="assets/js/preloader.js"></script>
+<!-- probetraining -->
+<script src="assets/js/probetraining.js"></script>
 <!-- main -->
 <script src="assets/js/main.js"></script>
 

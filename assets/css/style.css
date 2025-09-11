@@ -1003,17 +1003,17 @@ blockquote .quote-icon {
   border-radius: 50%;
 }
 
-.schedule-section-phone {
+/* .schedule-section-phone {
   display: none;
-}
+} */
 
 @media only screen and (max-width: 1199px) {
   .custom-table tbody tr td .dot {
     display: none;
   }
-  .schedule-section {
+  /* .schedule-section {
     display: none;
-  }
+  } */
   .schedule-section-phone {
     display: block !important;
   }
