@@ -185,6 +185,9 @@ blockquote {
   blockquote {
     padding: 20px;
   }
+  .big-card {
+    width: 50% !important;
+}
 }
 blockquote .quote-content-area span {
   position: relative;
@@ -3966,6 +3969,14 @@ section {
   position: relative;
   background-position: bottom left !important;
 }
+
+.inner-banner-section-trainer {
+  padding-top: 25px;
+  padding-bottom: 147px;
+  overflow: visible;
+  position: relative;
+}
+
 @media only screen and (max-width: 1199px) {
   .inner-banner-section {
     padding-top: 160px;
@@ -5586,6 +5597,31 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
   padding-left: 2px;
   color: white;
 }
+
+.location-section .about-list li {
+  font-weight: 500;
+  padding-bottom: 20px;
+  position: relative;
+  padding-left: 30px;
+  text-align: left;
+}
+
+.location-section .about-list li::before {
+    position: absolute;
+    content: "\f061";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    top: 3px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    background-color: #e5c949;
+    font-size: 11px;
+    border-radius: 50%;
+    padding-left: 2px;
+    color: white;
+}
 .about-section--style .about-user-area {
   display: flex;
   flex-wrap: wrap;
@@ -5730,6 +5766,12 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
   border: 2px solid white;
   color: #e5c949;
 }
+
+.training-btn a:hover {
+  background: black !important;
+  border-color: black !important;
+}
+
 .training-item:hover .training-overlay {
   opacity: 1;
   visibility: visible;
@@ -9517,4 +9559,80 @@ IMPRESSUM
 
 .justify-content-center {
   justify-content: center;
+}
+
+.age-group {
+  display: block;
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.big-card {
+  width: 33%;
+}
+
+
+
+
+
+/* Hover-Video in Trainer-Karten */
+.trainer-item .trainer-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.trainer-item .trainer-thumb .hover-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none; /* lässt Klicks auf die Karte durch */
+  transition: opacity 200ms ease-in-out;
+  background: #000; /* verhindert Aufblitzen */
+}
+
+.trainer-item:hover .trainer-thumb .hover-video {
+  opacity: 1;
+}
+
+.trainer-item:hover .trainer-thumb img {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.hover-border {
+  display: inline-block;           /* wichtig für sichtbare border */
+  border: 3px solid transparent;   /* Startzustand: kein sichtbarer Rand */
+  border-radius: 135px;            /* gleiche Rundung wie beim Hover */
+  transition: border-color 500ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.hover-border:hover {
+  border-color: #e5c949;           /* Farbe reinfaden */
+  transform: scale(1.02);          /* optional: sanftes Vergrößern */
+}
+
+.mb0 {
+  padding-bottom: 0 !important;
+}
+
+.location-pagination .swiper-pagination-bullet{
+      height: 16px;
+    width: 16px;
+}
+
+.gap30 {
+  gap: 30px;
+}
+
+.content-between {
+  justify-content: space-between;
+}
+
+.about-list-location {
+  display: flex;
+  justify-content: space-between;
 }

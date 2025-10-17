@@ -278,6 +278,42 @@ var swiper = new Swiper('.feature-slider', {
   }
 });
 
+// var swiper = new Swiper('.training-slider', {
+//   slidesPerView: 3,
+//   spaceBetween: 30,
+//   loop: true,
+//   navigation: {
+//     nextEl: '.slider-next',
+//     prevEl: '.slider-prev',
+//   },
+//   pagination: {
+//     el: '.swiper-pagination',
+//     clickable: true,
+//   },
+//   autoplay: {
+//     speeds: 2000,
+//     delay: 4000,
+//   },
+//   speed: 1000,
+//   breakpoints: {
+//     991: {
+//       slidesPerView: 2,
+//     },
+//     767: {
+//       slidesPerView: 2,
+//     },
+//     575: {
+//       slidesPerView: 1,
+//     },
+//   }
+// });
+
+// var swiper = new Swiper('.trainer-slider', {
+//   slidesPerView: 4,
+//   spaceBetween: 0,
+//   loop: true,
+//   navigation: {
+
 var swiper = new Swiper('.training-slider', {
   slidesPerView: 3,
   spaceBetween: 30,
@@ -306,6 +342,22 @@ var swiper = new Swiper('.training-slider', {
       slidesPerView: 1,
     },
   }
+});
+
+var swiper = new Swiper('.location-slider', {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: true,
+  pagination: {
+    el: '.location-pagination',
+    clickable: true,
+  },
+  autoplay: {
+    speeds: 2000,
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  speed: 1000,
 });
 
 var swiper = new Swiper('.trainer-slider', {
