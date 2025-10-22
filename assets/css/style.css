@@ -1438,6 +1438,7 @@ h4 a:hover {
   margin-bottom: 60px;
   position: relative;
   z-index: 9;
+  text-align: left;
 }
 @media only screen and (max-width: 991px) {
   .section-header {
@@ -2792,7 +2793,12 @@ section {
 }
 .header-section.header-fixed .header-action a {
   background-color: #e5c949;
-  color: white;
+  /* color: white; */
+}
+
+.header-section.header-fixed .header-action a:hover {
+  background-color: transparent;
+  /* color: white; */
 }
 
 .header-bottom-area {
@@ -5666,14 +5672,14 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
 .about-item-area-two .about-item {
   display: block;
   text-align: center;
-  background-color: white;
-  box-shadow: 0 5px 15px rgba(232, 0, 0, 0.12);
+  background-color: #191919;
+  /* box-shadow: 0 5px 15px rgba(232, 0, 0, 0.12); */
   border-radius: 6px;
   padding: 30px;
   transition: all 0.5s;
 }
 .about-item-area-two .about-item:hover {
-  box-shadow: 0 15px 30px rgba(232, 0, 0, 0.17);
+  /* box-shadow: 0 15px 30px rgba(232, 0, 0, 0.17); */
 }
 .about-item-area-two .about-item .about-icon {
   margin: 0 auto;
@@ -5684,12 +5690,12 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
   padding-top: 25px;
 }
 .about-item-area-two .about-item .title {
-  color: black;
+  color: #e5c949;
   font-weight: 600;
   margin-bottom: 10px;
 }
 .about-item-area-two .about-item p {
-  color: #2e2e2e;
+  color: #b3b3b3;
 }
 
 /*-------------------------------------------------
@@ -7576,7 +7582,7 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
 
 .statistics-area {
   background-color: black;
-  box-shadow: 0 15px 30px rgba(255, 255, 0, 0.17);
+  box-shadow: 0 2px 5px rgba(255, 255, 0, 0.17);
   border-radius: 10px;
   padding: 40px 20px;
   margin-top: -80px;
@@ -9505,6 +9511,10 @@ IMPRESSUM
   text-align: center;
 }
 
+.section-header-left {
+  text-align: left !important;
+}
+
 .section-title {
   font-size: 2em;
   color: white !important;
@@ -9635,4 +9645,16 @@ IMPRESSUM
 .about-list-location {
   display: flex;
   justify-content: space-between;
+}
+
+.pt80 {
+  padding-top: 80px;
+}
+
+/* .overview-section, .statistics-section{
+  background-color: #191919;
+} */
+
+.pt50 {
+  padding-top: 50px;
 }
