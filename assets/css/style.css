@@ -5672,7 +5672,8 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
 .about-item-area-two .about-item {
   display: block;
   text-align: center;
-  background-color: #191919;
+  background-color: black;
+  border: 1px solid #e5c949;
   /* box-shadow: 0 5px 15px rgba(232, 0, 0, 0.12); */
   border-radius: 6px;
   padding: 30px;
@@ -7582,8 +7583,8 @@ div[class*="col"]:nth-of-type(4n + 4) .trainer-item:hover {
 
 .statistics-area {
   background-color: black;
-  box-shadow: 0 2px 5px rgba(255, 255, 0, 0.17);
-  border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.516);
+    border-radius: 6px;
   padding: 40px 20px;
   margin-top: -80px;
   position: relative;
@@ -9657,4 +9658,17 @@ IMPRESSUM
 
 .pt50 {
   padding-top: 50px;
+}
+
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.text-success {
+  color: #e5c949;
+}
+
+.mb-5 {
+  margin-bottom: 5px;
 }
