@@ -1,6 +1,5 @@
 (function () {
-  // --- Helpers ---
-  function ensureVideo(card) {
+  function setupVideo(card) {
     const videoSrc = card.getAttribute("data-video");
     if (!videoSrc) return null;
 
@@ -8,25 +7,41 @@
     if (!thumb) return null;
 
     let videoEl = thumb.querySelector("video.hover-video");
+
     if (!videoEl) {
       videoEl = document.createElement("video");
       videoEl.className = "hover-video";
       videoEl.src = videoSrc;
-      videoEl.muted = true;       // Autoplay-Anforderung Mobile
+
+      // Autoplay Voraussetzungen (iOS Safari)
+      videoEl.muted = true;
       videoEl.loop = true;
-      videoEl.playsInline = true; // iOS
-      videoEl.preload = "metadata";
+      videoEl.playsInline = true;
+      videoEl.autoplay = false;
+
+      // iOS Safari Fix – verhindert Fullscreen/Blockierung
+      videoEl.setAttribute("controlsList", "nodownload nofullscreen noplaybackrate");
+      videoEl.setAttribute("disablePictureInPicture", "true");
+
+      // WICHTIG: preload = auto, sonst lädt Safari das Video nie
+      videoEl.preload = "auto";
+
       thumb.appendChild(videoEl);
+
+      // iOS benötigt ein explizites load()
+      videoEl.load();
     }
+
     return { videoEl, thumb };
   }
 
-  function attachHover(card, videoEl) {
-    // Desktop Hover
+  function setupHover(card, videoEl) {
+    // Desktop Hover Play
     card.addEventListener("mouseenter", () => {
-      if (videoEl.readyState < 2) videoEl.load();
-      videoEl.play().catch(() => {});
+      videoEl.load();
+      setTimeout(() => videoEl.play().catch(() => {}), 50);
     });
+
     card.addEventListener("mouseleave", () => {
       videoEl.pause();
       videoEl.currentTime = 0;
@@ -37,40 +52,33 @@
     const cards = Array.from(document.querySelectorAll(".trainer-item[data-video]"));
     if (!cards.length) return;
 
-    // Video-Elemente vorbereiten + Hover binden
     const entries = cards
       .map((card) => {
-        const res = ensureVideo(card);
-        if (!res) return null;
-        attachHover(card, res.videoEl);
-        return { card, ...res, timer: null };
+        const data = setupVideo(card);
+        if (!data) return null;
+        setupHover(card, data.videoEl);
+        return { card, ...data, timer: null };
       })
       .filter(Boolean);
 
-    // Mobile Autoplay: IntersectionObserver auf .trainer-thumb (stabile sichtbare Fläche)
+    // Mobile Autoplay
     if (window.matchMedia("(max-width: 768px)").matches) {
-      // Ein Observer für alle -> effizienter
       const observer = new IntersectionObserver(
-        (ioEntries) => {
-          ioEntries.forEach((e) => {
-            // Passenden Eintrag finden
-            const item = entries.find((x) => x.thumb === e.target);
+        (obsEntries) => {
+          obsEntries.forEach((entry) => {
+            const item = entries.find((x) => x.thumb === entry.target);
             if (!item) return;
 
             const { videoEl } = item;
-
-            // Sichtbar genug?
-            const visible = e.isIntersecting && e.intersectionRatio >= 0.5;
+            const visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
 
             if (visible) {
-              // 0.5s sichtbar → Play
               clearTimeout(item.timer);
               item.timer = setTimeout(() => {
-                if (videoEl.readyState < 2) videoEl.load();
-                videoEl.play().catch(() => {});
+                videoEl.load(); // Force iOS to allow autoplay
+                setTimeout(() => videoEl.play().catch(() => {}), 50);
               }, 500);
             } else {
-              // Unsichtbar → stoppen + reset
               clearTimeout(item.timer);
               videoEl.pause();
               videoEl.currentTime = 0;
@@ -79,12 +87,10 @@
         },
         {
           threshold: 0.5,
-          // etwas nachsichtiger unten, falls AOS/Transforms das Layout kurz verschieben
-          rootMargin: "0px 0px -10% 0px",
+          rootMargin: "0px 0px -10% 0px", // AOS transform handling
         }
       );
 
-      // Beobachte die sichtbare Bildfläche; funktioniert für Trainer-Seite UND Index
       entries.forEach(({ thumb }) => observer.observe(thumb));
     }
   });
