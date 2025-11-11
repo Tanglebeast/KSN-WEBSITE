@@ -87,87 +87,73 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <header class="header-section header-section-two">
     <div class="header">
-        <div class="header-bottom-area bg-black">
+        <div class="header-bottom-area">
             <div class="container-fluid">
                 <div class="header-menu-content">
+
                     <nav class="navbar navbar-expand-xl p-0">
-                        <a class="site-logo site-title d-block d-xl-none" href="/"><img src="assets/images/logo-2.png" alt="site-logo"></a>
-                        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+                        <!-- Logo mobile -->
+                        <a class="site-logo site-title d-block d-xl-none" href="/">
+                            <img src="assets/images/logo-2.png" alt="site-logo">
+                        </a>
+
+                        <!-- Burger Button -->
+                        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
                             <span class="fas fa-bars"></span>
                         </button>
+
                         <div class="collapse navbar-collapse header-cutomDiv" id="navbarSupportedContent">
-                            <ul class="navbar-nav main-menu ml-auto mr-auto">
-                                <div>
-                                    <li><a class="site-logo site-title d-none d-xl-block" href="/"><img src="assets/images/logo-2.png" alt="site-logo"></a></li>
-                                </div>
-                                <div class="flex flex-column-1">
-                                    <li class="menu_has_children">
+                            <div>
+                                    <a class="site-logo site-title d-none d-xl-block" href="/">
+                                        <img src="assets/images/logo-2.png" alt="site-logo">
+                                    </a>
+                            </div>
+                                <ul class="navbar-nav main-menu ml-auto mr-auto">
+                                    <li>
                                         <a href="/">HOME</a>
                                     </li>
-                                    <li>
-                                        <a href="/about">ÜBER UNS</a>
+
+                                    <li class="menu_has_children">
+                                        <a>ÜBER UNS <span class="submenu-arrow"></span></a>
                                         <ul class="sub-menu">
                                             <li><a href="/about">ÜBER DEN KSN</a></li>
                                             <li><a href="/ksn-trainer">UNSERE TRAINER</a></li>
                                         </ul>
                                     </li>
+
                                     <li class="menu_has_children">
-                                        <a href="/training">TRAINING</a>
+                                        <a>TRAINING <span class="submenu-arrow"></span></a>
                                         <ul class="sub-menu">
                                             <li><a href="/training">KURSE</a></li>
                                             <li><a href="/trainingsplan">TRAININGSPLAN</a></li>
-                                            <!-- <li><a href="/tarife">TARIFE</a></li> -->
                                         </ul>
                                     </li>
-                                    <li class="menu_has_children">
+
+                                    <li>
                                         <a href="/gallery">GALLERIE</a>
                                     </li>
-                                    <!-- <li class="menu_has_children">
-                                        <a href="#0">PAGES</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="event.html">EVENTS</a></li>
-                                            <li><a href="event-details.html">EVENT DETAILS</a></li>
-                                            <li><a href="plan.html">PRICING PLAN</a></li>
-                                            <li><a href="/faq">FAQ</a></li>
-                                            <li><a href="/gallery">GALLERY</a></li>
-                                            <li><a href=" /probetraining">APPLY</a></li>
-                                            <li><a href="register.html">SIGN UP</a></li>
-                                            <li><a href="login.html">SIGN IN</a></li>
-                                            <li><a href="/404">404 PAGE</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li><a class="site-logo site-title d-none d-xl-block" href="/"><img src="assets/images/logo-2.png" alt="site-logo"></a></li> -->
-                                    <!-- <li class="menu_has_children">
-                                        <a href="#0">TRAINER</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="/ksn-trainer">TRAINER</a></li>
-                                            <li><a href="master-details.html">TRAINER DETAILS</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li class="menu_has_children">
-                                        <a href="#0">NEWS</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">NEWS</a></li>
-                                            <li><a href="blog-classic.html">NEWS CLASSIC</a></li>
-                                            <li><a href="blog-details.html">NEWS DETAILS</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <li class="menu_has_children">
+
+                                    <li>
                                         <a href="/faq">FAQ</a>
                                     </li>
-                                     
-                                </div>
-                            </ul>
+                                </ul>
+
                             <div class="header-right">
                                 <div class="header-action-area">
                                     <div class="header-action">
-                                        <a href=" /probetraining" class="btn--base">PROBETRAINING <i class="fas fa-arrow-right ml-2"></i></a>
+                                        <a href="/probetraining" class="btn--base">
+                                            PROBETRAINING <i class="fas fa-arrow-right ml-2"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </nav>
+
                 </div>
             </div>
         </div>
@@ -662,9 +648,11 @@
                 <div class="footer-widget">
                     <h4 class="title">ÖFFNUNGSZEITEN</h4>
                     <ul class="footer-list">
-                        <li>Mo - Fr : 11:00 - 19:00 Uhr</li>
-                        <li>Sa : 11:00 - 21:00 Uhr</li>
-                        <li>Sonn- und Feiertage : Geschlossen</li>
+                        <li class="mb00">Für Mitglieder:</li>
+                        <li>Mo - So : 09:00 - 21:00 Uhr</li>
+                        <li class="mt00">Feiertage : Geschlossen</li>
+                        <li class="mb00">Für Besucher:</li>
+                        <li>Nur zu <a style="color:#e5c949" href="/training">Kurszeiten</a> geöffnet</li>
                     </ul>
                 </div>
             </div>
@@ -741,6 +729,19 @@
 <script src="assets/js/trainer-videos.js"></script>
 <!-- main -->
 <script src="assets/js/main.js"></script>
+
+    <script>
+        // Dropdown öffnen / schließen + Pfeil drehen
+        document.querySelectorAll(".menu_has_children > a").forEach(trigger => {
+            trigger.addEventListener("click", function (e) {
+                if (window.innerWidth < 1200) { 
+                    e.preventDefault();
+                    const parentLi = this.parentElement;
+                    parentLi.classList.toggle("open");
+                }
+            });
+        });
+    </script>
 
 
 
