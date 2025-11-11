@@ -2750,8 +2750,8 @@ section {
 
 .header {
   background-color: transparent;
-  width: 80%;
-  margin-left: 10%;
+  width: 70%;
+  margin-left: 15%;
   z-index: 99;
   -webkit-transition: all ease 1s;
   transition: all ease 1s;
@@ -3082,11 +3082,12 @@ section {
 }
 
 .site-logo img{
-  height: 110px;
+  max-height: 110px;
 }
 
 .site-logo-footer img{
-  height: 200px;
+  /* height: 200px; */
+  width: 200px;
 }
 
 @media only screen and (max-width: 1530px) {
@@ -4094,6 +4095,8 @@ section {
 # Footer-block
 --------------------------------------------------------------*/
 .footer-section {
+  width: 90%;
+  margin-left: 5%;
   position: relative;
   background-color: black;
   overflow: hidden;
@@ -9410,7 +9413,7 @@ box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3),
 }
 
 .navbar-nav {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: space-between;
 }
@@ -9630,6 +9633,15 @@ IMPRESSUM
   padding-bottom: 0 !important;
 }
 
+.mb00 {
+  margin-bottom: -10px !important;
+  color: #ffffff99 !important;
+}
+
+.mt00 {
+  margin-top: -5px !important;
+}
+
 .location-pagination .swiper-pagination-bullet{
       height: 16px;
     width: 16px;
@@ -9671,4 +9683,53 @@ IMPRESSUM
 
 .mb-5 {
   margin-bottom: 5px;
+}
+
+
+        /* CSS für Pfeile */
+        .submenu-arrow {
+            display: inline-block;
+            margin-left: 6px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #fff;
+            transition: transform .3s ease;
+        }
+
+        /* Pfeil dreht, wenn Submenu offen ist */
+        .menu_has_children.open > a .submenu-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile: Submenu ein-/ausklappen */
+        @media (max-width: 1199px) {
+            .menu_has_children > .sub-menu {
+                display: none;
+            }
+            .menu_has_children.open > .sub-menu {
+                display: block;
+            }
+        }
+
+
+
+
+
+
+@media only screen and (max-width: 991px) {
+  .title {
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .navbar-nav {
+    width: 100%;
+}
+}
+
+.menu_has_children a:hover {
+  cursor: pointer;
 }
