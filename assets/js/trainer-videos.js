@@ -19,7 +19,7 @@
       thumb.appendChild(videoEl);
     }
 
-    // Desktop → Hover
+    // Desktop → Hover Play/Pause
     card.addEventListener("mouseenter", () => {
       if (videoEl.readyState < 2) videoEl.load();
       videoEl.play().catch(() => {});
@@ -33,28 +33,35 @@
     // Mobile → Autoplay nach 0.5s sichtbar
     let visibilityTimer = null;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const visible = entry.isIntersecting && entry.intersectionRatio >= 0.6;
+    const observerTarget =
+      card.closest("a")?.parentElement?.classList.contains("col-xl-3")
+        ? card.closest("a") // Index-Seiten Struktur
+        : card;             // Trainerseite Struktur
 
-        if (visible) {
-          visibilityTimer = setTimeout(() => {
-            if (videoEl.readyState < 2) videoEl.load();
-            videoEl.play().catch(() => {});
-          }, 500); // 0.5 Sekunden sichtbar → Play
-        } else {
-          clearTimeout(visibilityTimer);
-          videoEl.pause();
-          videoEl.currentTime = 0;
-        }
-      });
-    }, {
-      threshold: 0.6 // mindestens 60% sichtbar
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const visible =
+            entry.isIntersecting && entry.intersectionRatio >= 0.6;
 
-    // nur auf mobile aktiv
+          if (visible) {
+            visibilityTimer = setTimeout(() => {
+              if (videoEl.readyState < 2) videoEl.load();
+              videoEl.play().catch(() => {});
+            }, 500);
+          } else {
+            clearTimeout(visibilityTimer);
+            videoEl.pause();
+            videoEl.currentTime = 0;
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    // Nur auf mobile aktiv
     if (window.matchMedia("(max-width: 768px)").matches) {
-      observer.observe(card);
+      observer.observe(observerTarget);
     }
   }
 
