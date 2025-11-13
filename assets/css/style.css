@@ -751,6 +751,7 @@ blockquote .quote-icon {
 @media only screen and (max-width: 991px) {
   .scrollToTop img {
     width: 40%;
+    display: none;
   }
 }
 .scrollToTop .scrollToTop-icon {
@@ -767,7 +768,7 @@ blockquote .quote-icon {
 }
 @media only screen and (max-width: 1270px) {
   .scrollToTop.active {
-    bottom: 80px;
+    bottom: 30px;
   }
 }
 
@@ -4086,6 +4087,10 @@ section {
   .breadcrumb-item.active::before {
     font-size: 14px;
   }
+
+  .footer-section {
+  width: 100% !important;
+}
 }
 
 /*--------------------------------------------------------------
