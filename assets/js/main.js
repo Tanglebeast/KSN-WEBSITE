@@ -235,7 +235,7 @@ var swiper = new Swiper('.banner-slider', {
   },
   autoplay: {
     speeds: 2000,
-    delay: 2000,
+    delay: 5000,
   },
   speed: 1000,
   breakpoints: {
