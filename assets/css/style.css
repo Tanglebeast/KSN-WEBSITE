@@ -9875,3 +9875,56 @@ IMPRESSUM
     border-radius: 5px;
     text-align: center;
 }
+
+
+
+
+.website-creation-section {
+    background: #212529;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    color: #fff !important;
+    margin-top: 30px;
+}
+.website-box {
+    max-width: 600px;
+    margin: auto;
+}
+
+.website-box p {
+	color: rgb(197, 197, 197);
+}
+.website-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+	color: white;
+}
+.website-text {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.website-author {
+    font-size: 20px;
+    font-weight: bold;
+    color: white !important;
+}
+.website-services {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.website-link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.website-link:hover {
+    color: #fff;
+}
+.website-logo img {
+    max-width: 180px;
+    margin-top: 15px;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+}
