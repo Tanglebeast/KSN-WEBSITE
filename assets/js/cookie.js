@@ -123,6 +123,7 @@ document.getElementById("reject-all").addEventListener("click", function () {
         setTimeout(() => {
         location.reload();
     }, 200);
+    
 });
 
 
