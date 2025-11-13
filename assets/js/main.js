@@ -2,71 +2,12 @@
   "user strict";
 
 
-  // Cookie-Management-Funktionen
-  function setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
-}
-
-function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-    }
-    return null;
-}
-
-function deleteCookie(name) {
-    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-}
-
-// Funktion zum dynamischen Laden von Microsoft Clarity
-function loadClarity() {
-  (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "ouwh42s7gn");
-}
 
 
-// Funktionen für Akzeptieren und Ablehnen, diese Funktionen sind nun global verfügbar
-window.acceptCookies = function() {
-  setCookie("userConsent", "accepted", 365);
-  $("#cookie-banner").hide();
-  loadClarity(); // Clarity laden, wenn Cookies akzeptiert werden
-}
 
 
-window.declineCookies = function() {
-    setCookie("userConsent", "declined", 365);
-    $("#cookie-banner").hide();
-}
 
-// Funktion, um das Cookie-Banner anzuzeigen
-window.showCookieBanner = function() {
-  $("#cookie-banner").show();
-}
-
-// Cookie-Banner anzeigen, wenn keine Einwilligung vorliegt
 $(window).on('load', function () {
-  const userConsent = getCookie("userConsent");
-  if (!userConsent) {
-      $("#cookie-banner").show();
-  } else if (userConsent === "accepted") {
-      loadClarity(); // Clarity laden, wenn Zustimmung bereits vorliegt
-  }
-
-
-
   $(".preloader").delay(1000).animate({
       "opacity": "0"
   }, 1000, function () {
