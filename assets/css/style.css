@@ -3814,6 +3814,12 @@ section {
   padding-top: 264px;
   padding-bottom: 289px;
 }
+
+.banner-section-two.bg_img {
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
 .banner-section-two .banner-bg {
   position: absolute;
   top: 0;
