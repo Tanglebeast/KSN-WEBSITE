@@ -10108,10 +10108,24 @@ IMPRESSUM
 }
 
   .carousel-item img {
-    height: 400px;
+    height: 320px;
     object-fit: cover;
           width: 100%;
   }
+
+      .mw50 {
+      max-width: 50%;
+    }
+
+    .bgblack {
+      position: relative;
+      left: -10%;
+      background-color: black;
+      width: 120%;
+      height: 50px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
 
   @media (min-width: 768px) {
     .carousel-item img {
@@ -10119,4 +10133,5 @@ IMPRESSUM
       object-fit: cover;
       width: 100%;
     }
+
   }
