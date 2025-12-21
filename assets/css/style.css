@@ -9934,3 +9934,189 @@ IMPRESSUM
     margin-top: 15px;
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
 }
+
+
+.bg-gym{
+  background:
+    radial-gradient(900px 420px at 10% 0%, rgba(124,92,255,.35), transparent 55%),
+    radial-gradient(760px 380px at 95% 10%, rgba(35,213,171,.20), transparent 50%),
+    #0b0d12;
+}
+
+/* Badge */
+.bg-gym-badge{
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid var(--gym-border);
+}
+
+/* Card */
+.gym-card{
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  border: 1px solid var(--gym-border) !important;
+  border-radius: 1.25rem;
+  backdrop-filter: blur(10px);
+}
+.gym-card-header{
+  background: rgba(0,0,0,.18);
+  border-bottom: 1px solid var(--gym-border) !important;
+}
+
+/* Section dot + hr */
+.gym-dot{
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: #e5c949;
+  box-shadow: #e5c949;
+}
+.gym-hr{
+  border-color: rgba(255,255,255,.10);
+  opacity: 1;
+}
+
+/* Inputs */
+.gym-input{
+  background-color: rgba(0,0,0,.22) !important;
+  border-color: var(--gym-border) !important;
+  color: #e9ecf1 !important;
+}
+.gym-input:focus{
+  border-color: rgba(124,92,255,.55) !important;
+  box-shadow: 0 0 0 .25rem rgba(124,92,255,.18) !important;
+}
+.gym-textarea{ min-height: 120px; }
+
+/* Button */
+.gym-btn{
+  background: linear-gradient(90deg, var(--gym-accent), #4aa3ff) !important;
+  border: 0 !important;
+  border-radius: 1rem;
+  box-shadow: 0 14px 38px rgba(0,0,0,.35);
+}
+.gym-btn:hover{ filter: brightness(1.05); }
+
+.form-floating {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-check {
+  display: flex;
+}
+
+.form-check input{
+  width: 20px;
+  margin-right: 20px;
+}
+
+/* Subcard für jede Bestellzeile: wirkt hochwertiger */
+.gym-item-card{
+  background: rgba(0,0,0,.16);
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Icon-Button: gleich groß, sauber */
+.gym-icon-btn{
+  padding: .9rem 0;
+  border-radius: .9rem;
+  border-color: rgba(255,255,255,.12);
+}
+.gym-icon-btn:disabled{
+  opacity: .35;
+}
+
+/* Add-Button leicht „Signature“ */
+.gym-add-btn{
+  border-color: rgba(255,255,255,.14);
+  background: rgba(255,255,255,.04);
+}
+.gym-add-btn:hover{
+  background: #e5c949;
+}
+
+.addbutton {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.text-secondary {
+  margin-bottom: 0px !important;;
+}
+
+.vorbestellheader {
+  justify-content: space-between;
+}
+
+.ml10px {
+  margin-left: 10px;
+}
+
+.w100 {
+  width: 100% !important;
+}
+
+.mtb15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.mtb75 {
+  margin-top: 75px;
+  margin-bottom: 75px;
+}
+.flex-direction-column {
+  display: Flex;
+  flex-direction: column;
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.b-trans {
+  background: transparent;
+  border-color: transparent;
+  color: #B4B4B4;
+}
+
+.mt25 {
+  margin-top: 25px;
+}
+
+#paymentSection {
+  scroll-margin-top: 180px; /* kleiner/größer stellen */
+}
+
+.brandingcolor {
+  color: #e5c949;
+}
+
+.fs100 {
+  font-size: 100%;
+}
+
+.mw90 {
+      max-width: 90%;
+    /* width: 100%; */
+    min-width: 90%;
+}
+
+  .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+          width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-item img {
+      height: 400px;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
