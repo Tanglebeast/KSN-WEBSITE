@@ -10135,3 +10135,23 @@ IMPRESSUM
     }
 
   }
+
+  .w60 {
+    width: 60% !important;
+  }
+
+    @media (min-width: 999px) {
+  .w60 {
+    width: none !important;
+  }
+  }
+
+      @media (max-width: 999px) {
+  .w60 {
+    width: 100% !important;
+  }
+  }
+
+  .hoverproduct:hover {
+    scale: 102%;
+  }
