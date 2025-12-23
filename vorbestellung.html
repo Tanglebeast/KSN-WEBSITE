@@ -1097,322 +1097,306 @@
       </div>
     </div>
 
-    <script>
-      (() => {
-        const PRICE_PER_ITEM = 45;
+<script>
+  (() => {
+    const PRICE_PER_ITEM = 45;
 
-        const form = document.getElementById("preorderForm");
-        if (!form) return;
+    const form = document.getElementById("preorderForm");
+    if (!form) return;
 
-        const itemsWrap = document.getElementById("itemsWrap");
-        const addBtn = document.getElementById("addItemBtn");
+    const itemsWrap = document.getElementById("itemsWrap");
+    const addBtn = document.getElementById("addItemBtn");
 
-        const btn = document.getElementById("submitBtn");
-        const label = btn.querySelector(".btn-label");
-        const loading = btn.querySelector(".btn-loading");
+    const btn = document.getElementById("submitBtn");
+    const label = btn.querySelector(".btn-label");
+    const loading = btn.querySelector(".btn-loading");
 
-        // Alerts (im Zahlungsbereich)
-        const alertSuccess = document.getElementById("alertSuccessPay");
-        const alertError = document.getElementById("alertErrorPay");
-        const paymentSection = document.getElementById("paymentSection");
+    // Alerts (im Zahlungsbereich)
+    const alertSuccess = document.getElementById("alertSuccessPay");
+    const alertError = document.getElementById("alertErrorPay");
+    const paymentSection = document.getElementById("paymentSection");
 
-        const fieldBestellung = document.getElementById("bestellung");
-        const fieldBestellungJson = document.getElementById("bestellung_json");
-        const fieldTotal = document.getElementById("gesamtpreis_eur");
-        const fieldQty = document.getElementById("gesamtmenge");
+    const fieldBestellung = document.getElementById("bestellung");
+    const fieldBestellungJson = document.getElementById("bestellung_json");
+    const fieldTotal = document.getElementById("gesamtpreis_eur");
+    const fieldQty = document.getElementById("gesamtmenge");
 
-        const fieldOrderId = document.getElementById("bestell_id");
+    const fieldOrderId = document.getElementById("bestell_id");
 
-        const totalEl = document.getElementById("totalPrice");
-        const payEl = document.getElementById("payTotal");
-        const paypalEl = document.getElementById("paypalTotal");
+    const totalEl = document.getElementById("totalPrice");
+    const payEl = document.getElementById("payTotal");
+    const paypalEl = document.getElementById("paypalTotal");
 
-        // Verwendungszweck-Text (wird nach erfolgreichem Submit ersetzt)
-        const purposeEls = Array.from(
-          document.querySelectorAll(".purposeText")
-        );
+    // Verwendungszweck-Text (wird nach erfolgreichem Submit ersetzt)
+    const purposeEls = Array.from(document.querySelectorAll(".purposeText"));
 
-        const show = (el) => el && el.classList.remove("d-none");
-        const hide = (el) => el && el.classList.add("d-none");
+    const show = (el) => el && el.classList.remove("d-none");
+    const hide = (el) => el && el.classList.add("d-none");
 
-        const scrollToPayment = () => {
-          if (!paymentSection) return;
-          requestAnimationFrame(() => {
-            paymentSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          });
-        };
-
-        const setLoading = (isLoading) => {
-          btn.disabled = isLoading;
-          label.classList.toggle("d-none", isLoading);
-          loading.classList.toggle("d-none", !isLoading);
-        };
-
-        const getRows = () =>
-          Array.from(itemsWrap.querySelectorAll(".gym-item"));
-        const templateRow = getRows()[0];
-
-        function formatEUR(n) {
-          return `${Number(n).toFixed(0)} €`;
-        }
-
-        function setOrderId() {
-          if (!fieldOrderId) return;
-          const rnd = Math.random().toString(36).slice(2, 8).toUpperCase();
-          fieldOrderId.value = `Vorbestellung-${Date.now()}-${rnd}`;
-        }
-
-        function updateRemoveButtons() {
-          const rows = getRows();
-
-          rows.forEach((row, idx) => {
-            const removeBtn = row.querySelector(".item-remove");
-            const icon = row.querySelector(".item-remove-icon");
-            if (!removeBtn || !icon) return;
-
-            if (idx === 0) {
-              removeBtn.dataset.mode = "reset";
-              removeBtn.title = "Zurücksetzen";
-              removeBtn.setAttribute("aria-label", "Zeile zurücksetzen");
-              icon.className = "bi item-remove-icon bi-arrow-counterclockwise";
-            } else {
-              removeBtn.dataset.mode = "remove";
-              removeBtn.title = "Artikel entfernen";
-              removeBtn.setAttribute("aria-label", "Artikel entfernen");
-              icon.className = "bi item-remove-icon bi-trash3";
-            }
-          });
-        }
-
-        function updatePricesUI() {
-          const rows = getRows();
-          let totalQty = 0;
-          let totalPrice = 0;
-
-          rows.forEach((row) => {
-            const qty = Number(row.querySelector(".item-menge")?.value || 0);
-            const safeQty = Number.isFinite(qty) && qty > 0 ? qty : 0;
-
-            const linePrice = safeQty * PRICE_PER_ITEM;
-            totalQty += safeQty;
-            totalPrice += linePrice;
-
-            const lineEl = row.querySelector(".item-lineprice strong");
-            if (lineEl) lineEl.textContent = formatEUR(linePrice);
-          });
-
-          if (totalEl) totalEl.textContent = formatEUR(totalPrice);
-          if (payEl) payEl.textContent = formatEUR(totalPrice);
-          if (paypalEl) paypalEl.textContent = formatEUR(totalPrice);
-
-          if (fieldTotal) fieldTotal.value = totalPrice.toFixed(0);
-          if (fieldQty) fieldQty.value = String(totalQty);
-        }
-
-        function updatePurposeText() {
-          const v = (document.getElementById("vorname")?.value || "").trim();
-          const n = (document.getElementById("nachname")?.value || "").trim();
-
-          // Placeholder bleibt, wenn Name fehlt
-          if (!v || !n) return;
-
-          const text = `${v} ${n} – Vorbestellung`;
-          purposeEls.forEach((el) => (el.textContent = text));
-        }
-
-        function addRow() {
-          const clone = templateRow.cloneNode(true);
-
-          const artikelSel = clone.querySelector(".item-artikel");
-          const groesseSel = clone.querySelector(".item-groesse");
-          const mengeInp = clone.querySelector(".item-menge");
-
-          // Robust auf Placeholder zurück
-          if (artikelSel) {
-            artikelSel.value = "";
-            artikelSel.selectedIndex = 0;
-          }
-          if (groesseSel) {
-            groesseSel.value = "";
-            groesseSel.selectedIndex = 0;
-          }
-
-          if (mengeInp) mengeInp.value = "1";
-
-          const lineEl = clone.querySelector(".item-lineprice strong");
-          if (lineEl) lineEl.textContent = formatEUR(PRICE_PER_ITEM);
-
-          itemsWrap.appendChild(clone);
-          updateRemoveButtons();
-          updatePricesUI();
-        }
-
-        function removeRow(row) {
-          const rows = getRows();
-          if (rows.length <= 1) return;
-
-          const artikel = row.querySelector(".item-artikel")?.value || "";
-          const groesse = row.querySelector(".item-groesse")?.value || "";
-          const menge = row.querySelector(".item-menge")?.value || "1";
-          const isFilled = artikel || groesse || (menge && menge !== "1");
-
-          if (isFilled && !confirm("Diese Zeile wirklich entfernen?")) return;
-
-          row.remove();
-          updateRemoveButtons();
-          updatePricesUI();
-        }
-
-        // Remove/Reset (event delegation)
-        itemsWrap.addEventListener("click", (e) => {
-          const removeBtn = e.target.closest(".item-remove");
-          if (!removeBtn) return;
-
-          const row = e.target.closest(".gym-item");
-          if (!row) return;
-
-          const mode = removeBtn.dataset.mode;
-
-          if (mode === "reset") {
-            const artikelSel = row.querySelector(".item-artikel");
-            const groesseSel = row.querySelector(".item-groesse");
-            const mengeInp = row.querySelector(".item-menge");
-
-            if (artikelSel) {
-              artikelSel.value = "";
-              artikelSel.selectedIndex = 0;
-            }
-            if (groesseSel) {
-              groesseSel.value = "";
-              groesseSel.selectedIndex = 0;
-            }
-            if (mengeInp) mengeInp.value = "1";
-
-            updatePricesUI();
-            return;
-          }
-
-          removeRow(row);
+    const scrollToPayment = () => {
+      if (!paymentSection) return;
+      requestAnimationFrame(() => {
+        paymentSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
+      });
+    };
 
-        // Live totals on input/change
-        itemsWrap.addEventListener("input", (e) => {
-          if (
-            e.target.matches(".item-menge") ||
-            e.target.matches(".item-artikel") ||
-            e.target.matches(".item-groesse")
-          ) {
-            updatePricesUI();
-          }
-        });
-        itemsWrap.addEventListener("change", () => updatePricesUI());
+    const setLoading = (isLoading) => {
+      btn.disabled = isLoading;
+      label.classList.toggle("d-none", isLoading);
+      loading.classList.toggle("d-none", !isLoading);
+    };
 
-        addBtn.addEventListener("click", addRow);
+    const getRows = () => Array.from(itemsWrap.querySelectorAll(".gym-item"));
 
-        function serializeItems() {
-          const rows = getRows();
+    // WICHTIG: Vorlage einmalig "sauber" sichern, nicht die Live-Zeile klonen
+    const firstRow = getRows()[0];
+    if (!firstRow) return;
+    const templateRow = firstRow.cloneNode(true);
 
-          const items = rows.map((row) => {
-            const artikel = (
-              row.querySelector(".item-artikel")?.value || ""
-            ).trim();
-            const groesse = (
-              row.querySelector(".item-groesse")?.value || ""
-            ).trim();
-            const menge = Number(row.querySelector(".item-menge")?.value || 0);
+    function formatEUR(n) {
+      return `${Number(n).toFixed(0)} €`;
+    }
 
-            return {
-              artikel,
-              groesse,
-              menge,
-              preis_eur: PRICE_PER_ITEM,
-              zeilenpreis_eur: menge * PRICE_PER_ITEM,
-            };
-          });
+    function setOrderId() {
+      if (!fieldOrderId) return;
+      const rnd = Math.random().toString(36).slice(2, 8).toUpperCase();
+      fieldOrderId.value = `Vorbestellung-${Date.now()}-${rnd}`;
+    }
 
-          const text = items
-            .map(
-              (it, i) =>
-                `${i + 1}) ${it.artikel} / ${it.groesse} / ${it.menge}x = ${
-                  it.zeilenpreis_eur
-                }€`
-            )
-            .join(" | ");
+    function resetRow(row) {
+      const artikelSel = row.querySelector(".item-artikel");
+      const groesseSel = row.querySelector(".item-groesse");
+      const mengeInp = row.querySelector(".item-menge");
 
-          if (fieldBestellung) fieldBestellung.value = text;
-          if (fieldBestellungJson)
-            fieldBestellungJson.value = JSON.stringify(items);
+      // Placeholder zurücksetzen
+      if (artikelSel) {
+        artikelSel.value = "";
+        artikelSel.selectedIndex = 0;
+      }
+      if (groesseSel) {
+        groesseSel.value = "";
+        groesseSel.selectedIndex = 0;
+      }
+      if (mengeInp) mengeInp.value = "1";
 
-          return items;
+      const lineEl = row.querySelector(".item-lineprice strong");
+      if (lineEl) lineEl.textContent = formatEUR(PRICE_PER_ITEM);
+    }
+
+    function updateRemoveButtons() {
+      const rows = getRows();
+
+      rows.forEach((row, idx) => {
+        const removeBtn = row.querySelector(".item-remove");
+        const icon = row.querySelector(".item-remove-icon");
+        if (!removeBtn || !icon) return;
+
+        if (idx === 0) {
+          removeBtn.dataset.mode = "reset";
+          removeBtn.title = "Zurücksetzen";
+          removeBtn.setAttribute("aria-label", "Zeile zurücksetzen");
+          icon.className = "bi item-remove-icon bi-arrow-counterclockwise";
+        } else {
+          removeBtn.dataset.mode = "remove";
+          removeBtn.title = "Artikel entfernen";
+          removeBtn.setAttribute("aria-label", "Artikel entfernen");
+          icon.className = "bi item-remove-icon bi-trash3";
         }
+      });
+    }
 
-        // Init
-        setOrderId();
-        updateRemoveButtons();
+    function updatePricesUI() {
+      const rows = getRows();
+      let totalQty = 0;
+      let totalPrice = 0;
+
+      rows.forEach((row) => {
+        const qty = Number(row.querySelector(".item-menge")?.value || 0);
+        const safeQty = Number.isFinite(qty) && qty > 0 ? qty : 0;
+
+        const linePrice = safeQty * PRICE_PER_ITEM;
+        totalQty += safeQty;
+        totalPrice += linePrice;
+
+        const lineEl = row.querySelector(".item-lineprice strong");
+        if (lineEl) lineEl.textContent = formatEUR(linePrice);
+      });
+
+      if (totalEl) totalEl.textContent = formatEUR(totalPrice);
+      if (payEl) payEl.textContent = formatEUR(totalPrice);
+      if (paypalEl) paypalEl.textContent = formatEUR(totalPrice);
+
+      if (fieldTotal) fieldTotal.value = totalPrice.toFixed(0);
+      if (fieldQty) fieldQty.value = String(totalQty);
+    }
+
+    function updatePurposeText() {
+      const v = (document.getElementById("vorname")?.value || "").trim();
+      const n = (document.getElementById("nachname")?.value || "").trim();
+
+      // Placeholder bleibt, wenn Name fehlt
+      if (!v || !n) return;
+
+      const text = `${v} ${n} – Vorbestellung`;
+      purposeEls.forEach((el) => (el.textContent = text));
+    }
+
+    function addRow() {
+      const clone = templateRow.cloneNode(true);
+      resetRow(clone);
+
+      itemsWrap.appendChild(clone);
+      updateRemoveButtons();
+      updatePricesUI();
+    }
+
+    function removeRow(row) {
+      const rows = getRows();
+      if (rows.length <= 1) return;
+
+      const artikel = row.querySelector(".item-artikel")?.value || "";
+      const groesse = row.querySelector(".item-groesse")?.value || "";
+      const menge = row.querySelector(".item-menge")?.value || "1";
+      const isFilled = artikel || groesse || (menge && menge !== "1");
+
+      if (isFilled && !confirm("Diese Zeile wirklich entfernen?")) return;
+
+      row.remove();
+      updateRemoveButtons();
+      updatePricesUI();
+    }
+
+    // Remove/Reset (event delegation)
+    itemsWrap.addEventListener("click", (e) => {
+      const removeBtn = e.target.closest(".item-remove");
+      if (!removeBtn) return;
+
+      const row = e.target.closest(".gym-item");
+      if (!row) return;
+
+      const mode = removeBtn.dataset.mode;
+
+      if (mode === "reset") {
+        resetRow(row);
         updatePricesUI();
+        return;
+      }
 
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
+      removeRow(row);
+    });
 
-          hide(alertSuccess);
-          hide(alertError);
+    // Live totals on input/change
+    itemsWrap.addEventListener("input", (e) => {
+      if (
+        e.target.matches(".item-menge") ||
+        e.target.matches(".item-artikel") ||
+        e.target.matches(".item-groesse")
+      ) {
+        updatePricesUI();
+      }
+    });
+    itemsWrap.addEventListener("change", () => updatePricesUI());
 
-          if (!form.checkValidity()) {
-            form.classList.add("was-validated");
-            return;
-          }
+    addBtn.addEventListener("click", addRow);
 
-          const items = serializeItems();
+    function serializeItems() {
+      const rows = getRows();
 
-          // Safety
-          if (
-            !items.length ||
-            items.some(
-              (it) => !it.artikel || !it.groesse || !it.menge || it.menge < 1
-            )
-          ) {
-            form.classList.add("was-validated");
-            show(alertError);
-            scrollToPayment();
-            return;
-          }
+      const items = rows.map((row) => {
+        const artikel = (row.querySelector(".item-artikel")?.value || "").trim();
+        const groesse = (row.querySelector(".item-groesse")?.value || "").trim();
+        const menge = Number(row.querySelector(".item-menge")?.value || 0);
 
-          setLoading(true);
+        return {
+          artikel,
+          groesse,
+          menge,
+          preis_eur: PRICE_PER_ITEM,
+          zeilenpreis_eur: menge * PRICE_PER_ITEM,
+        };
+      });
 
-          try {
-            const res = await fetch(form.action, {
-              method: "POST",
-              body: new FormData(form),
-              headers: { Accept: "application/json" },
-            });
+      const text = items
+        .map(
+          (it, i) =>
+            `${i + 1}) ${it.artikel} / ${it.groesse} / ${it.menge}x = ${it.zeilenpreis_eur}€`
+        )
+        .join(" | ");
 
-            if (res.ok) {
-              show(alertSuccess);
+      if (fieldBestellung) fieldBestellung.value = text;
+      if (fieldBestellungJson) fieldBestellungJson.value = JSON.stringify(items);
 
-              // KEIN Reset -> Betrag/Bestellung bleibt sichtbar für die Zahlung
-              form.classList.remove("was-validated");
+      return items;
+    }
 
-              // Verwendungszweck nach erfolgreichem Absenden aktualisieren
-              updatePurposeText();
+    // Init
+    setOrderId();
+    // Optional aber sinnvoll: erste sichtbare Zeile wirklich auf "Bitte auswählen" setzen
+    resetRow(firstRow);
+    updateRemoveButtons();
+    updatePricesUI();
 
-              // Scroll runter in den Zahlungsbereich
-              scrollToPayment();
-            } else {
-              show(alertError);
-              scrollToPayment();
-            }
-          } catch {
-            show(alertError);
-            scrollToPayment();
-          } finally {
-            setLoading(false);
-          }
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      hide(alertSuccess);
+      hide(alertError);
+
+      if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+        return;
+      }
+
+      const items = serializeItems();
+
+      // Safety
+      if (
+        !items.length ||
+        items.some((it) => !it.artikel || !it.groesse || !it.menge || it.menge < 1)
+      ) {
+        form.classList.add("was-validated");
+        show(alertError);
+        scrollToPayment();
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
         });
-      })();
-    </script>
+
+        if (res.ok) {
+          show(alertSuccess);
+
+          // KEIN Reset -> Betrag/Bestellung bleibt sichtbar für die Zahlung
+          form.classList.remove("was-validated");
+
+          // Verwendungszweck nach erfolgreichem Absenden aktualisieren
+          updatePurposeText();
+
+          // Scroll runter in den Zahlungsbereich
+          scrollToPayment();
+        } else {
+          show(alertError);
+          scrollToPayment();
+        }
+      } catch {
+        show(alertError);
+        scrollToPayment();
+      } finally {
+        setLoading(false);
+      }
+    });
+  })();
+</script>
+
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     End Vorbestellung
