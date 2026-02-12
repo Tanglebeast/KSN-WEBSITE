@@ -269,7 +269,7 @@ var swiper = new Swiper('.training-slider', {
   },
   autoplay: {
     speeds: 2000,
-    delay: 4000,
+    delay: 800,
   },
   speed: 1000,
   breakpoints: {
