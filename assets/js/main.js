@@ -7,12 +7,16 @@
 
 
 
-$(window).on('load', function () {
-  $(".preloader").delay(1000).animate({
-      "opacity": "0"
-  }, 1000, function () {
-      $(".preloader").css("display", "none");
-  });
+// $(window).on('load', function () {
+//   $(".preloader").delay(1000).animate({
+//       "opacity": "0"
+//   }, 1000, function () {
+//       $(".preloader").css("display", "none");
+//   });
+// });
+
+$(window).on("load", function () {
+  $(".preloader").fadeOut(300);
 });
 
   $("select").niceSelect(),
