@@ -16,7 +16,7 @@
 // });
 
 $(window).on("load", function () {
-  $(".preloader").fadeOut(300);
+  $(".preloader").fadeOut(100);
 });
 
   $("select").niceSelect(),
