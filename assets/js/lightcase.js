@@ -47,8 +47,9 @@
 				speedOut: 250,
 				width: null,
 				height: null,
-				maxWidth: 464,
-				maxHeight: 823,
+				maxWidth: 1272,
+				zIndex: 9999,
+				maxHeight: 717,
 				forceWidth: false,
 				forceHeight: false,
 				liveResize: true,
@@ -95,8 +96,8 @@
 					wmode: 'transparent'
 				},
 				video: {
-					width: 464,
-					height: 832,
+					width: 1272,
+					height: 717,
 					poster: '',
 					preload: 'auto',
 					controls: true,
